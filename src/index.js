@@ -29,7 +29,7 @@ const getTextListFromInput = (jsonInput, canHaveColor) => {
     const furnitureListPerName = furnitureList.sort(compareName).map(furniture => furniture.name)
     const furnSetPerName = new Set(furnitureListPerName);
     furnSetPerName.forEach(furn => {
-        furnMap.set(furn, furnitureList.filter(furniture => furn === furniture).length);
+        furnMap.set(furn, furnitureList.filter(furniture => furn === furniture.name).length);
     });
 
     furnitureList = furnitureList.sort(compareColor).map(furniture => furniture.color)
@@ -52,7 +52,6 @@ const process = () => {
         
         output.value = output.value + '\n===============================\nINTERIOR DYE LIST :\n===============================\n\n';
         colorMap.forEach((value, key) => {
-            console.log(key.substring(0,6));
             output.value = output.value + `[] - ${colors[key.substring(0,6)] ? colors[key.substring(0,6)] : `Color not found, hex value : ${key.substring(0,6)}`} x ${value}\n`;
         });
         
